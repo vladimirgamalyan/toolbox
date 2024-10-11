@@ -43,7 +43,12 @@
                     }
                 }
 
-                outputDiv.innerHTML = 'Налог: ' + formatMoney(totalTax) + ' бат';
+                let s = 'Налог: ' + formatMoney(totalTax) + ' бат';
+                if (totalTax > 0) {
+                    const p = Math.round(totalTax / e.target.value * 10000) / 100;
+                    s = s + ' (' + p + '%)';
+                }
+                outputDiv.innerHTML = s;
             }
 
             function fillTaxTable() {
