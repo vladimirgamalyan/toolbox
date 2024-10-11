@@ -28,23 +28,10 @@
                 return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
             }
 
-            function getTaxGradesExt() {
-                let taxGrades = getTaxGrades();
-                taxGrades.unshift([0, 0]);
-                taxGrades.push([-1, 0]);
-                let result = [];
-                for (let i = 0; i < taxGrades.length - 1; i++) {
-                    result.push([taxGrades[i][0], taxGrades[i + 1][0], taxGrades[i][1]]);
-                }
-                return result;
-            }
-
             function inputAmountOnInput(e) {
                 let v = Math.floor(e.target.value);
                 console.log('------------');
                 const taxGrades = getTaxGrades();
-                //let outputLines = [];
-                //outputLines.push('Общая сумма: ' + formatMoney(v));
                 let totalTax = 0;
                 for (let i = taxGrades.length - 1; i >= 0; i--) {
                     if (v > taxGrades[i][0]) {
@@ -56,24 +43,20 @@
                     }
                 }
 
-                //outputDiv.innerHTML = outputLines.join('<br>');
                 outputDiv.innerHTML = 'Налог: ' + formatMoney(totalTax) + ' бат';
             }
 
             function fillTaxTable() {
-
-                function toMoneyString(v) {
-                    if (v === -1) {
-                        return 'бесконечности';
+                const taxGrades = getTaxGrades();
+                let outputLines = ['Расчет налога производится по следующей схеме:'];
+                outputLines.push('0% до ' + formatMoney(taxGrades[0][0]) + ' бат');
+                for (let i = 0; i < taxGrades.length; i++) {
+                    let s = taxGrades[i][1] + '% от ' + formatMoney(taxGrades[i][0]);
+                    if (i + 1 < taxGrades.length) {
+                        s += ' до ' + formatMoney(taxGrades[i + 1][0]);
                     }
-                    return formatMoney(v);
+                    outputLines.push(s + ' бат');
                 }
-
-                const taxGrades = getTaxGradesExt();
-                let outputLines = ['Расчет налога производится по следующей таблице:'];
-                taxGrades.forEach(function(i) {
-                    outputLines.push('От ' + formatMoney(i[0]) + ' до ' + toMoneyString(i[1]) + ': ' + i[2] + '%');
-                });
                 taxTableDiv.innerHTML = outputLines.join('<br>');
             }
 
@@ -88,7 +71,7 @@
     <div id="taxTableDiv"></div>
     <br>
     <div>
-        <label for="inputAmount">Общая сумма дохода (баты):</label>
+        <label for="inputAmount">Общая сумма поступлений (баты):</label>
         <input type="number" id="inputAmount" name="inputAmount">
     </div>
     <br>
