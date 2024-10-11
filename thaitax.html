@@ -40,7 +40,7 @@
             }
 
             function inputAmountOnInput(e) {
-                let v = e.target.value;
+                let v = Math.floor(e.target.value);
                 console.log('------------');
                 const taxGrades = getTaxGrades();
                 //let outputLines = [];
