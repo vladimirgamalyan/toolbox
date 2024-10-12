@@ -11,18 +11,15 @@
             const outputDiv = document.getElementById("outputDiv");
             const taxTableDiv = document.getElementById("taxTableDiv");
             const inputAmount = document.getElementById("inputAmount");
-
-            function getTaxGrades() {
-                return [
-                    [150000, 5],
-                    [300000, 10],
-                    [500000, 15],
-                    [750000, 20],
-                    [1000000, 25],
-                    [2000000, 30],
-                    [5000000, 35]
-                ];
-            }
+            const taxGrades = [
+                [150000, 5],
+                [300000, 10],
+                [500000, 15],
+                [750000, 20],
+                [1000000, 25],
+                [2000000, 30],
+                [5000000, 35]
+            ];
 
             function formatMoney(amount) {
                 return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
@@ -31,7 +28,6 @@
             function inputAmountOnInput(e) {
                 let v = Math.floor(e.target.value);
                 console.log('------------');
-                const taxGrades = getTaxGrades();
                 let totalTax = 0;
                 for (let i = taxGrades.length - 1; i >= 0; i--) {
                     if (v > taxGrades[i][0]) {
@@ -52,7 +48,6 @@
             }
 
             function fillTaxTable() {
-                const taxGrades = getTaxGrades();
                 let outputLines = ['Расчет налога производится по следующей схеме:'];
                 outputLines.push('0% до ' + formatMoney(taxGrades[0][0]) + ' бат');
                 for (let i = 0; i < taxGrades.length; i++) {
@@ -74,17 +69,17 @@
 <h1>Thai Tax 2024</h1>
 <div>
     <div id="taxTableDiv"></div>
+    <div>
+        <a href="https://www.youtube.com/watch?v=SLz-hSF0VDk">циферки взяты из этого видосика</a>
+    </div>
     <br>
     <div>
         <label for="inputAmount">Общая сумма поступлений (баты):</label>
-        <input type="number" id="inputAmount" name="inputAmount" autofocus>
+        <input type="number" id="inputAmount" name="inputAmount" min="0" max="100000000" autofocus>
     </div>
     <br>
     <div id="outputDiv"></div>
     <br><br>
-    <div>
-        <a href="https://www.youtube.com/watch?v=SLz-hSF0VDk">Циферки взяты из этого видосика</a>
-    </div>
 </div>
 </body>
 </html>
