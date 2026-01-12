@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kemet Map Selection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="controls">
+            <label for="player-count">Количество игроков:</label>
+            <select id="player-count">
+                <option value="2">2 игрока</option>
+                <option value="3">3 игрока</option>
+                <option value="4">4 игрока</option>
+                <option value="5">5 игроков</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <div id="info-panel">
+            Кликните по карте, чтобы выбрать регион
+        </div>
+        <div id="map-container">
+            <div id="map-wrapper">
+                <img id="map-image" src="./img/map/map2p/background.jpeg" alt="Карта для 2 игроков">
+                <div id="highlights-container"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>

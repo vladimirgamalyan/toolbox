@@ -1,0 +1,48 @@
+{
+  "sanctuary": {
+    "name": "Sanctuary Of All Gods",
+    "type": "sanctuary",
+    "adjacent": [
+      "desert_11"
+    ],
+    "obelisk": true,
+    "hitboxColor": "#2424F2"
+  },
+  "desert_11": {
+    "name": "Desert 0",
+    "type": "desert",
+    "adjacent": [
+      "sanctuary",
+      "temple_04"
+    ],
+    "obelisk": false,
+    "hitboxColor": "#F2F224"
+  },
+  "temple_04": {
+    "name": "Temple 0",
+    "type": "temple",
+    "adjacent": [
+      "desert_11"
+    ],
+    "obelisk": false,
+    "hitboxColor": "#F224F2"
+  },
+  "city_05": {
+    "name": "City 0",
+    "type": "city",
+    "adjacent": [
+      "desert_01"
+    ],
+    "obelisk": false,
+    "hitboxColor": "#F22424"
+  },
+  "desert_01": {
+    "name": "Desert 1",
+    "type": "desert",
+    "adjacent": [
+      "city_05"
+    ],
+    "obelisk": false,
+    "hitboxColor": "#24F224"
+  }
+}
